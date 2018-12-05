@@ -1,4 +1,4 @@
-package Restaurant.Restaurant.Model;
+package Restaurant.Restaurant.User.Model;
 
 import lombok.Data;
 import java.io.Serializable;

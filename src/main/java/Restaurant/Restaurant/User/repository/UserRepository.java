@@ -1,6 +1,6 @@
-package Restaurant.Restaurant.repository;
+package Restaurant.Restaurant.User.repository;
 
-import Restaurant.Restaurant.Model.User;
+import Restaurant.Restaurant.User.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
