@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -23,11 +23,14 @@ public class UserController {
         return userService.getByUsername(username);
     }
 
-
-
     @PostMapping("/add")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "tEST";
     }
 
 
