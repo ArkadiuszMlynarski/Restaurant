@@ -3,6 +3,7 @@ package Restaurant.Restaurant.User.Controller;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -28,10 +29,12 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @GetMapping("/test")
+    @GetMapping("test")
     public String test(){
-        return "tEST";
+        return "test";
     }
+
+
 
 
 
