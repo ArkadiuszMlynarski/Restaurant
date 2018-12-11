@@ -2,8 +2,10 @@ package Restaurant.Restaurant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan("Restaurant.Restaurant.Restaurant.repository")
 public class RestaurantApplication {
 
 
