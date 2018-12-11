@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("Restaurant.Restaurant.Dish")
 @ComponentScan("Restaurant.Restaurant.Restaurant")
 @ComponentScan("Restaurant.Restaurant.Config")
+@ComponentScan("Restaurant.Restaurant.Order")
 public class RestaurantApplication {
 
 

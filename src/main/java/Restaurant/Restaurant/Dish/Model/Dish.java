@@ -1,8 +1,11 @@
 package Restaurant.Restaurant.Dish.Model;
 
+import Restaurant.Restaurant.Order.Model.Order;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -13,13 +16,16 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
     private float price;
 
     public Dish() {
+
     }
 
     public Dish(String name, float price) {
         this.name = name;
+
         this.price = price;
     }
 

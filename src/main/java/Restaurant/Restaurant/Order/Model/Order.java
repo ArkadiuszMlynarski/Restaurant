@@ -7,31 +7,42 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Order")
-
-
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToOne
     private Restaurant Restaurant;
-    private List<Dish> Dish;
+
+    @OneToMany
+    private Set<Dish> Dish;
+
     private float price;
+
+    @ManyToOne
     private User User;
 
     public Order(){
     }
 
-    public Order(long id, Restaurant restaurant, List<Dish> dish, float price, User user) {
-        this.id = id;
+    public Order(Restaurant restaurant, float price,User user) {
         Restaurant = restaurant;
-        Dish = dish;
         this.price = price;
         User = user;
+    }
+
+    public Set<Dish> getDish() {
+        return Dish;
+    }
+
+    public void setDish(Set<Dish> dish) {
+        Dish = dish;
     }
 
     public long getId() {
@@ -48,14 +59,6 @@ public class Order {
 
     public void setRestaurant(Restaurant restaurant) {
         Restaurant = restaurant;
-    }
-
-    public List<Dish> getDish() {
-        return Dish;
-    }
-
-    public void setDish(List<Dish> dish) {
-        Dish = dish;
     }
 
     public float getPrice() {
