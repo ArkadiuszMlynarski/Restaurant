@@ -2,6 +2,7 @@ package Restaurant.Restaurant.Order.Model;
 
 import Restaurant.Restaurant.Dish.Model.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import Restaurant.Restaurant.User.Model.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,15 +21,17 @@ public class Order {
     private Restaurant Restaurant;
     private List<Dish> Dish;
     private float price;
+    private User User;
 
     public Order(){
     }
 
-    public Order(long id, Restaurant restaurant, List<Dish> dish, float price) {
+    public Order(long id, Restaurant restaurant, List<Dish> dish, float price, User user) {
         this.id = id;
         Restaurant = restaurant;
         Dish = dish;
         this.price = price;
+        User = user;
     }
 
     public long getId() {
@@ -61,5 +64,13 @@ public class Order {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return User;
+    }
+
+    public void setUser(User user) {
+        User = user;
     }
 }
