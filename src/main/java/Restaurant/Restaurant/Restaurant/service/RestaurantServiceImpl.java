@@ -1,4 +1,4 @@
 package Restaurant.Restaurant.Restaurant.service;
 
-public class RestaurantServiceImpl {
+public class RestaurantServiceImpl implements RestaurantService {
 }
