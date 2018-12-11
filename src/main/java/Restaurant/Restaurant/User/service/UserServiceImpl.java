@@ -4,8 +4,6 @@ import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
