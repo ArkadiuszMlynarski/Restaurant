@@ -10,11 +10,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserServiceImpl userService;
+
+    @GetMapping("")
+    public String userHomePage(){
+        return "userHomePage";
+    }
 
 
     @GetMapping("/getAll")
@@ -31,15 +36,6 @@ public class UserController {
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
-
-    @GetMapping("test")
-    public String test(){
-        return "test";
-    }
-
-
-
-
 
 
 }

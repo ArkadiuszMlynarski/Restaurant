@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Dishes")
 public class Dish {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
