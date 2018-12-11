@@ -4,11 +4,12 @@ import lombok.Data;
 import java.io.Serializable;
 import javax.persistence.*;
 
+
 @Data
 @Entity
 @Table(name = "Users")
 public class User implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +17,16 @@ public class User implements Serializable {
     private String lastName;
     private String username;
     private String password;
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

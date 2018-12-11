@@ -4,10 +4,11 @@ import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
