@@ -32,9 +32,14 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @GetMapping("test")
-    public String test(){
-        return "test";
+    @GetMapping("/user/homepage")
+    public String userHomePage(){
+        return "userHomePage";
+    }
+
+    @GetMapping("/admin/homepage")
+    public String adminHomePage(){
+        return "userHomePage";
     }
 
 
