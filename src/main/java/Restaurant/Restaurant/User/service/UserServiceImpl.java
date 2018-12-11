@@ -29,14 +29,5 @@ public class UserServiceImpl implements UserService{
         return repository.findByUsername(username);
     }
 
-    @PostConstruct
-    public void testwowe(){
-        User ww = new User();
-        ww.setFirstName("aa");
-        ww.setLastName("ww");
-        ww.setUsername("afgf");
-        ww.setPassword("agg");
-        repository.save(ww);
-    }
 
 }

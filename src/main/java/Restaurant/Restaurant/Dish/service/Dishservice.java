@@ -1,6 +1,7 @@
 package Restaurant.Restaurant.Dish.service;
 
-import Restaurant.Restaurant.DK.Dish;
+
+import Restaurant.Restaurant.Dish.Model.Dish;
 import Restaurant.Restaurant.User.Model.User;
 import org.springframework.stereotype.Service;
 
