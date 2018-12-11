@@ -6,7 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("Restaurant.Restaurant.Restaurant.repository")
+@ComponentScan("Restaurant.Restaurant.User")
+@ComponentScan("Restaurant.Restaurant.Dish")
+@ComponentScan("Restaurant.Restaurant.Restaurant")
+@ComponentScan("Restaurant.Restaurant.Config")
 public class RestaurantApplication {
 
 
