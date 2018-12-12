@@ -1,6 +1,6 @@
 package Restaurant.Restaurant.Order.Controller;
 
-import Restaurant.Restaurant.Order.Model.Order;
+import Restaurant.Restaurant.Order.Model.OrderModel;
 import Restaurant.Restaurant.Order.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class OrderController {
     OrderServiceImpl orderService;
 
     @PostMapping("/add")
-    public void addOrder(@RequestBody Order order){
+    public void addOrder(@RequestBody OrderModel order){
         orderService.addOrder(order);
     }
 }

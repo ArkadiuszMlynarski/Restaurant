@@ -1,0 +1,1 @@
+INSERT INTO USER (actitity, username, password) values ('1','mateusz','mateusz'), ('1','admin','admin')

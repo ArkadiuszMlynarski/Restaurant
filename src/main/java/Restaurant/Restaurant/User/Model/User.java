@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
-public class User implements Serializable {
+public class User  {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,17 +18,18 @@ public class User implements Serializable {
     private String lastName;
     private String username;
     private String password;
-    private int active;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public User(String firstName, String lastName, String username, String password, int active) {
+
+
+    public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.active = active;
+
     }
 
     public User() {
@@ -36,7 +37,6 @@ public class User implements Serializable {
     }
 
     public User(User user) {
-        this.active = user.getActive();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.username = user.getUsername();
@@ -94,11 +94,5 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public int getActive() {
-        return active;
-    }
 
-    public void setActive(int active) {
-        this.active = active;
-    }
 }

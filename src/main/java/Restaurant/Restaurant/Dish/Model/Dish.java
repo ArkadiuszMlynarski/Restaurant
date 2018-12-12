@@ -1,6 +1,6 @@
 package Restaurant.Restaurant.Dish.Model;
 
-import Restaurant.Restaurant.Order.Model.Order;
+
 import lombok.Data;
 
 import javax.persistence.*;
