@@ -37,9 +37,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").authenticated()
                     .anyRequest().permitAll()
                     .and()
-                    .httpBasic()
+                .httpBasic()
                     .and()
-                    .formLogin().permitAll();
+                .formLogin()
+                    .loginPage("/login.html")
+                    .permitAll()
+                    .and()
+                .logout()
+                    .permitAll();
     }
 
     private PasswordEncoder getPasswordEncoder() {
