@@ -32,8 +32,8 @@ public class UserController {
         return userService.getAll();
     }
 
-    @GetMapping("/get={name}")
-    public Optional<User> getByName(@PathVariable String username){
+    @GetMapping("/getByUserName={username}")
+    public Optional<User> getByUsername(@PathVariable String username){
         return userService.getByUsername(username);
     }
 

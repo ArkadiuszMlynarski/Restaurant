@@ -18,10 +18,8 @@ public class User  {
     private String lastName;
     private String username;
     private String password;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
-
 
 
     public User(String firstName, String lastName, String username, String password) {
