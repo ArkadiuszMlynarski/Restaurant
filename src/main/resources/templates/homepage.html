@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -43,8 +43,15 @@
 
 
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <a class="btn btn-default" href="#" role="button">Logout</a>
+                    <!--<form class="navbar-form navbar-right" method="GET">-->
+                        <!--<a class="btn btn-default" href="@{/logout}" role="button">Logout</a>-->
+                    <!--</form>-->
+
+                    <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
+                        <input type="hidden">
+                        <button type="submit" name="logout" value="true" class="link-button">
+                            Logout
+                        </button>
                     </form>
                 </div>
             </nav>
