@@ -6,6 +6,7 @@ import Restaurant.Restaurant.User.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -13,16 +14,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserServiceImpl userService;
 
-    @GetMapping("")
+    @GetMapping("/homepage")
     public String userHomePage(){
-        return "userHomePage";
+        return "homepage";
     }
 
 
