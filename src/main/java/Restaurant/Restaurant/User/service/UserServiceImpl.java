@@ -29,9 +29,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> getUser(User user) {
-        return repository.findUser(user);
+    public Optional<User> getById(Long id) {
+        return repository.findById(id);
     }
+
 
     @Override
     public boolean isUserExist(User user) {
