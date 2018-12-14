@@ -1,6 +1,8 @@
 package Restaurant.Restaurant.User.Model;
 
 import lombok.Data;
+import org.springframework.lang.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +18,9 @@ public class User  {
     private Long id;
     private String firstName;
     private String lastName;
+    @NonNull
     private String username;
+    @NonNull
     private String password;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
