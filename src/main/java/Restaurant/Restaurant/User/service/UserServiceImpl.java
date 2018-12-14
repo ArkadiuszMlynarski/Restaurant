@@ -28,5 +28,13 @@ public class UserServiceImpl implements UserService{
         return repository.findByUsername(username);
     }
 
+    @Override
+    public Optional<User> getUser(User user) {
+        return repository.findUser(user);
+    }
 
+    @Override
+    public boolean isUserExist(User user) {
+        return repository.isUserExist(user);
+    }
 }

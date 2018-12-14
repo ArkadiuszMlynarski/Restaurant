@@ -14,4 +14,8 @@ public interface UserService {
     public List<User> getAll();
 
     public Optional<User> getByUsername(String username);
+
+    public Optional<User> getUser(User user);
+
+    public boolean isUserExist(User user);
 }
