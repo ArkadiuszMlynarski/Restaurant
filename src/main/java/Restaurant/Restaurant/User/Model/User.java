@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
-
+@Data
 @Entity
 @Table(name = "Users")
 public class User  {
@@ -21,19 +21,6 @@ public class User  {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-
-    public User(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-
-    }
-
-    public User() {
-
-    }
-
     public User(User user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -44,53 +31,6 @@ public class User  {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
 
 }

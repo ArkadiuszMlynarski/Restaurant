@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class OrderModel {
 
@@ -15,14 +16,4 @@ public class OrderModel {
     private Long id;
 
 
-    public OrderModel() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
