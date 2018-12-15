@@ -59,6 +59,21 @@ public class AdminController {
         if(tempOptUser.isPresent()){
             userService.editUser(tempOptUser.get());
         }
+    }
+
+    @PostMapping("/removeUser")
+    public void removeUser(@RequestBody User user){
+        userService.removeUser(user.getId());
+    }
+
+    @GetMapping("removeUserById={id}")
+    public void removeUser(@PathVariable Long id){
+        Optional<User> tempOptUser = userService.getById(id);
+
+        if(tempOptUser.isPresent()){
+            userService.editUser(tempOptUser.get());
+        }
+        userService.removeUser(id);
 
     }
 }
