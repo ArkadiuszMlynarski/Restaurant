@@ -54,6 +54,11 @@ public class AdminController {
 
     @GetMapping("/editUserById={id}")
     public void editUser(@PathVariable Long id) {
-        userService.editUserById(id);
+        Optional<User> tempOptUser = userService.getById(id);
+
+        if(tempOptUser.isPresent()){
+            userService.editUser(tempOptUser.get());
+        }
+
     }
 }
