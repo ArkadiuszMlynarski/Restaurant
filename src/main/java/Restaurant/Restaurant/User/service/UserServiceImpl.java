@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> getByUsername(String username) {
         return repository.findByUsername(username);
+
     }
 
     @Override
@@ -36,6 +37,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean isUserExist(User user) {
-        return repository.isUserExist(user);
+        return repository.existsById(user.getId());
     }
 }
