@@ -61,16 +61,12 @@
 
                     </ul>
 
-                    <span class="badge badge-info align-middle">
-                        <p>Zalogowany jako: <p th:text="${currentUserName}">default</p></a></p>
-                    </span>
-
 
                     <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
 
                         <input type="hidden">
-                        <button type="submit" name="logout" value="true" class="link-button navbar-form">
-                            Logout
+                        <button type="submit" name="logout" value="true" class="btn btn-secondary">
+                            Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
                         </button>
                     </form>
                 </div>
