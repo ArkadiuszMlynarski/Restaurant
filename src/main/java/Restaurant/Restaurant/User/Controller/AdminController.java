@@ -1,5 +1,6 @@
 package Restaurant.Restaurant.User.Controller;
 
+import Restaurant.Restaurant.Dish.service.Dishservice;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    Dishservice dishservice;
+
     @GetMapping("/homepage")
     public String adminHomePage(Model model){
 
@@ -30,16 +34,20 @@ public class AdminController {
         return "adminHomepage";
     }
 
-
-
     @GetMapping("/listUsers")
     public String listUsers(Model model){
 
-        System.out.println(userService.getAll());
+        model.addAttribute("currentUserName", getCurrentUserName());
+        model.addAttribute("users",dishservice.getAll());
+
+        return "dishes/listDishes";
+    }
+
+    @GetMapping("/listDishes")
+    public String listDishes(Model model){
 
         model.addAttribute("currentUserName", getCurrentUserName());
-        model.addAttribute("users",userService.getAll());
-
+        model.addAttribute("dishes",userService.getAll());
 
         return "users/listUsers";
     }
@@ -57,9 +65,7 @@ public class AdminController {
         model.addAttribute("Username", user.getUsername());
         model.addAttribute("Password",user.getPassword());
         }
-
         return "editUser";
-
     }
 
     @GetMapping("/removeUser=id")
