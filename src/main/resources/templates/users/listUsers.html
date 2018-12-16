@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -168,18 +168,10 @@ $(function () {
                 <div class="row">
                     <div style="width: 300px; margin-left: auto; margin-right: auto">
                         <ul class="list-group">
-                            <li class="list-group-item open">
-                                User1
-                                <span class="show-menu">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</span>
-                                <ul class="list-group-submenu">
-                                    <a href="#"><li class="list-group-submenu-item danger"><span class="glyphicon glyphicon-trash"></span></li></a>
-                                    <a href="#"><li class="list-group-submenu-item warning"><span class="glyphicon glyphicon-pencil"></span></li></a>
-                                </ul>
-                            </li>
-                            <li class="list-group-item">
-                                User2
+                            <li class="list-group-item" th:each="userr : ${users}">
+                                <span th:text="${userr.firstName}">error</span>
+                                <span th:text="${userr.lastName}">error</span>
+                                <span th:text="${userr.username}">error</span>
                                 <span class="show-menu">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</span>

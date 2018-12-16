@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,64 +25,63 @@ public class AdminController {
     @GetMapping("/homepage")
     public String adminHomePage(Model model){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-            model.addAttribute("currentUserName", currentUserName);
-        }
+        model.addAttribute("currentUserName", getCurrentUserName());
+
         return "adminHomepage";
     }
+
+
 
     @GetMapping("/listUsers")
     public String listUsers(Model model){
 
+        System.out.println(userService.getAll());
+
+        model.addAttribute("currentUserName", getCurrentUserName());
         model.addAttribute("users",userService.getAll());
+
 
         return "users/listUsers";
     }
 
-    @GetMapping("/getAll")
-    public List<User> getAll(){
-        return userService.getAll();
-    }
+    @GetMapping("/editUser=name")
+    public String editUser(@PathVariable Long id, Model model){
 
-    @GetMapping("/getByUserName={username}")
-    public Optional<User> getByUsername(@PathVariable String username){
-        return userService.getByUsername(username);
-    }
+        Optional<User> optuser = userService.getById(id);
 
-    @PostMapping("/addUser")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
-    }
+        if(optuser.isPresent()){
+        User user = optuser.get();
 
-    @PostMapping("/editUser")
-    public void editUser(@RequestBody User user) {
-        userService.editUser(user);
-    }
-
-    @GetMapping("/editUserById={id}")
-    public void editUser(@PathVariable Long id) {
-        Optional<User> tempOptUser = userService.getById(id);
-
-        if(tempOptUser.isPresent()){
-            userService.editUser(tempOptUser.get());
+        model.addAttribute("Firstname", user.getFirstName());
+        model.addAttribute("Lastname",user.getLastName());
+        model.addAttribute("Username", user.getUsername());
+        model.addAttribute("Password",user.getPassword());
         }
+
+        return "editUser";
+
     }
 
-    @PostMapping("/removeUser")
-    public void removeUser(@RequestBody User user){
-        userService.removeUser(user.getId());
-    }
+    @GetMapping("/removeUser=id")
+    public ModelAndView removeUser(@PathVariable Long id, Model model){
 
-    @GetMapping("removeUserById={id}")
-    public void removeUser(@PathVariable Long id){
-        Optional<User> tempOptUser = userService.getById(id);
-
-        if(tempOptUser.isPresent()){
-            userService.editUser(tempOptUser.get());
-        }
         userService.removeUser(id);
 
+        return new ModelAndView("admin/listUsers");
     }
+
+
+
+    private String getCurrentUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+        }
+        else{
+            return "default";
+        }
+    }
+
+
 }
