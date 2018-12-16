@@ -38,18 +38,18 @@ public class AdminController {
     public String listUsers(Model model){
 
         model.addAttribute("currentUserName", getCurrentUserName());
-        model.addAttribute("users",dishservice.getAll());
+        model.addAttribute("users",userService.getAll());
 
-        return "dishes/listDishes";
+        return "users/listUsers";
     }
 
     @GetMapping("/listDishes")
     public String listDishes(Model model){
 
         model.addAttribute("currentUserName", getCurrentUserName());
-        model.addAttribute("dishes",userService.getAll());
+        model.addAttribute("dishes",dishservice.getAll());
 
-        return "users/listDishes";
+        return "dishes/listDishes";
     }
 
     @GetMapping("/editUser=name")
