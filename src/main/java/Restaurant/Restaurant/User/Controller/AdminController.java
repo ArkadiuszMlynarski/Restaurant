@@ -49,7 +49,7 @@ public class AdminController {
         model.addAttribute("currentUserName", getCurrentUserName());
         model.addAttribute("dishes",userService.getAll());
 
-        return "users/listUsers";
+        return "users/listDishes";
     }
 
     @GetMapping("/editUser=name")
