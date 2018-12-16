@@ -32,6 +32,14 @@ public class AdminController {
         return "adminHomepage";
     }
 
+    @GetMapping("/listUsers")
+    public String listUsers(Model model){
+
+        model.addAttribute("users",userService.getAll());
+
+        return "users/listUsers";
+    }
+
     @GetMapping("/getAll")
     public List<User> getAll(){
         return userService.getAll();
