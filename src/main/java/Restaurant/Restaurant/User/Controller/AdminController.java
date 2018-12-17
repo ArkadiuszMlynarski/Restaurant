@@ -81,12 +81,13 @@ public class AdminController {
         return "editUser";
     }
 
-    @GetMapping("/removeUser=id")
+    @GetMapping("/removeUser/{id}")
     public ModelAndView removeUser(@PathVariable Long id, Model model){
 
         userService.removeUser(id);
+        model.addAttribute("message","użytkownik został usunięty");
 
-        return new ModelAndView("admin/listUsers");
+        return new ModelAndView("users/listUsers");
     }
 
 
