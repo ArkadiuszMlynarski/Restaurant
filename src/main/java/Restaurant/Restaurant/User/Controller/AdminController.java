@@ -102,11 +102,17 @@ public class AdminController {
                                   @PathVariable Long id,
                                   Model model){
 
-        userService.editUser(id, imie, nazwisko, username, password, restaurant);
-
-        model.addAttribute("update",true);
-
-        return new ModelAndView("redirect:/admin/listUsers");
+        userService.removeUser(id);
+        //check username is used
+        if(userService.isUsernameUsed(username)){
+            model.addAttribute("usernameIsUsed",true);
+            return new ModelAndView("redirect:/admin/editUser/{id}");
+        }
+        else{
+            userService.addUser(imie, nazwisko, username, password, restaurant);
+            model.addAttribute("update",true);
+            return new ModelAndView("redirect:/admin/listUsers");
+        }
     }
 
     @GetMapping("/newUser")
