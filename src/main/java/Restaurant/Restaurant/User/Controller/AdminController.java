@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.xml.ws.ResponseWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,9 +87,26 @@ public class AdminController {
         model.addAttribute("usernameModel", user.getUsername());
         model.addAttribute("passwordModel",user.getPassword());
         model.addAttribute("restaurantModel",user.getRestaurant().getName());
+        model.addAttribute("ajdi",user.getId());
         }
 
         return "/users/editUser";
+    }
+
+    @PostMapping("/confirmEditUser/{id}")
+    public ModelAndView confirmEditUser(@RequestParam("imie") String imie,
+                                  @RequestParam("nazwisko") String nazwisko,
+                                  @RequestParam("username") String username,
+                                  @RequestParam("password") String password,
+                                  @RequestParam("restaurant") String restaurant,
+                                  @PathVariable Long id,
+                                  Model model){
+
+        userService.editUser(id, imie, nazwisko, username, password, restaurant);
+
+        model.addAttribute("update",true);
+
+        return new ModelAndView("redirect:/admin/listUsers");
     }
 
     @GetMapping("/newUser")
@@ -104,7 +119,7 @@ public class AdminController {
     }
 
 
-    @PostMapping("/addUser")
+    @PostMapping("/confirmAddUser")
     @ResponseBody
     public ModelAndView addUser(@RequestParam("imie") String imie,
                                 @RequestParam("nazwisko") String nazwisko,
@@ -113,22 +128,16 @@ public class AdminController {
                                 @RequestParam("restaurant") String restaurant,
                                 Model model){
 
-
-        User user = new User();
-        user.setFirstName(imie);
-        user.setLastName(nazwisko);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRestaurant(restaurantService.getByname(restaurant));
-        List<Role> tempList= new ArrayList<Role>();
-        tempList.add(roleRepository.findByName("USER"));
-        user.setRoles(tempList);
-        userService.addUser(user);
-
-        model.addAttribute("add",true);
-
-
-        return new ModelAndView("redirect:/admin/listUsers");
+        //check username is used
+        if(userService.isUsernameUsed(username)){
+            model.addAttribute("usernameIsUsed",true);
+            return new ModelAndView("redirect:/admin/newUser");
+        }
+        else{
+            userService.addUser(imie, nazwisko, username, password, restaurant);
+            model.addAttribute("add", true);
+            return new ModelAndView("redirect:/admin/listUsers");
+        }
     }
 
     @GetMapping("/removeUser/{id}")
