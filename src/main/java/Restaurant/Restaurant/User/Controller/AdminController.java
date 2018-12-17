@@ -84,10 +84,10 @@ public class AdminController {
     @GetMapping("/removeUser/{id}")
     public ModelAndView removeUser(@PathVariable Long id, Model model){
 
-        userService.removeUser(id);
-        model.addAttribute("message","użytkownik został usunięty");
+       // userService.removeUser(id);
+        model.addAttribute("remove",true);
 
-        return new ModelAndView("users/listUsers");
+        return new ModelAndView("redirect:/admin/listUsers");
     }
 
 
