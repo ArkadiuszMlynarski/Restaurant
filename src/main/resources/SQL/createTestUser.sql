@@ -1,1 +1,1 @@
-INSERT INTO USER (actitity, username, password) values ('1','mateusz','mateusz'), ('1','admin','admin')
+INSERT INTO userr (first_name,last_name,password,username,restaurant_id) values ('Mateusz','Partyka','mateusz','mateusz','1'), ('admin','admin','admin','admin',null)

@@ -33,7 +33,7 @@ public class User  {
     @JoinColumn(name="Restaurant_id")
     private Restaurant restaurant;
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Role> roles;
 
 
@@ -46,8 +46,6 @@ public class User  {
 
     }
 
-
-
     public User(User user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -58,6 +56,8 @@ public class User  {
         this.restaurant = user.getRestaurant();
 
     }
+
+
 
 
 }

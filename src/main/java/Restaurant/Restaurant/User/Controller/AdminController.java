@@ -2,10 +2,12 @@ package Restaurant.Restaurant.User.Controller;
 
 import Restaurant.Restaurant.Dish.service.Dishservice;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
+import Restaurant.Restaurant.User.Model.Role;
 import Restaurant.Restaurant.User.Model.User;
+import Restaurant.Restaurant.User.repository.RoleRepository;
 import Restaurant.Restaurant.User.service.UserService;
+import Restaurant.Restaurant.Wrapper.userWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.ws.ResponseWrapper;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +33,10 @@ public class AdminController {
 
     @Autowired
     RestaurantService restaurantService;
+
+    @Autowired
+    RoleRepository roleRepository;
+
 
     @GetMapping("/homepage")
     public String adminHomePage(Model model){
@@ -79,6 +87,39 @@ public class AdminController {
         model.addAttribute("Password",user.getPassword());
         }
         return "editUser";
+    }
+
+    @GetMapping("/newUser")
+    public String newUser(Model model){
+
+        model.addAttribute("currentUserName", getCurrentUserName());
+        model.addAttribute("restaurants",restaurantService.getAll());
+
+        return "/users/newUser";
+    }
+
+
+    @PostMapping("/addUser")
+    @ResponseBody
+    public ModelAndView addUser(@RequestParam("imie") String imie,
+                                @RequestParam("nazwisko") String nazwisko,
+                                @RequestParam("username") String username,
+                                @RequestParam("password") String password,
+                                @RequestParam("restaurant") String restaurant){
+
+        User user = new User();
+        user.setFirstName(imie);
+        user.setLastName(nazwisko);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRestaurant(restaurantService.getByname(restaurant));
+        List<Role> tempList= new ArrayList<Role>();
+        tempList.add(roleRepository.findByName("USER"));
+        user.setRoles(tempList);
+        userService.addUser(user);
+
+
+        return new ModelAndView("redirect:/admin/listUsers");
     }
 
     @GetMapping("/removeUser/{id}")
