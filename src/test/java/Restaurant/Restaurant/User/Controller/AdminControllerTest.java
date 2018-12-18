@@ -29,6 +29,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -46,18 +48,10 @@ public class AdminControllerTest {
     @MockBean
     private UserRepository userRepository;
 
-    @Autowired
-    private FilterChainProxy springSecurityFilterChain;
-
-    @Autowired
-    private WebApplicationContext wac;
-
-    MockMvc mvc;
 
     @Before
     public void setup() {
-//        mvc = MockMvcBuilders.webAppContextSetup(this.wac)
-//                .addFilters(this.springSecurityFilterChain).build();
+
     }
 
     @Test
@@ -67,38 +61,19 @@ public class AdminControllerTest {
         assertEquals(2, userService.getAll().size());
     }
 
-    @WithMockUser(username="admin",password="admin",authorities = "ROLE_ADMIN")
     @Test
-    public void adminHomePage() throws Exception {
-        HomeController controller = new HomeController();
-        MockMvc mockMvc = standaloneSetup(controller).build();
-        mockMvc.perform(get("/admin/homepage")).andExpect(view().name("adminHomepage"));
+    public void saveUsersTest() {
+        User user = new User(new User("Jan","Kowalski","jan123","kowalski456",null));
+        when(userRepository.save(user)).thenReturn(user);
+        assertEquals(user, userService.addUser(user));
     }
 
     @Test
-    public void listUsers() throws Exception {
-        HomeController controller = new HomeController();
-        MockMvc mockMvc = standaloneSetup(controller).build();
-        mockMvc.perform(get("/listUsers")).andExpect(view().name("/users/listUsers"));
+    public void removeRestaurantTest() {
+        Long id = new Long(1);
+        userService.removeUser(id);
+        verify(userRepository, times(1)).deleteById(id);
     }
 
-    @Test
-    public void editUser() {
-    }
 
-    @Test
-    public void confirmEditUser() {
-    }
-
-    @Test
-    public void newUser() {
-    }
-
-    @Test
-    public void addUser() {
-    }
-
-    @Test
-    public void removeUser() {
-    }
 }

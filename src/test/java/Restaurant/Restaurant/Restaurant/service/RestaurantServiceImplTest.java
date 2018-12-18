@@ -83,5 +83,5 @@ public class RestaurantServiceImplTest {
         verify(restaurantRepository, times(1)).deleteById(id);
     }
 
-   
+
 }
