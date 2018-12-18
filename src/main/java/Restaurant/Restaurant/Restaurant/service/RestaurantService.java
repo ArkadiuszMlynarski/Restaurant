@@ -1,6 +1,7 @@
 package Restaurant.Restaurant.Restaurant.service;
 
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.Optional;
 public interface RestaurantService {
 
 
+    @Autowired
     public void addRestaurant(String name, String address);
 
     public List<Restaurant> getAll();

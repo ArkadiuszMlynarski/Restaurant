@@ -2,7 +2,7 @@ package Restaurant.Restaurant.Restaurant.Model;
 
 
 import lombok.Data;
-import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -50,6 +50,7 @@ public class Restaurant {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
 
 

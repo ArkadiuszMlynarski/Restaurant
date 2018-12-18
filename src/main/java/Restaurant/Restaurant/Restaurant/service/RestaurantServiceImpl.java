@@ -2,10 +2,6 @@ package Restaurant.Restaurant.Restaurant.service;
 
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.repository.RestaurantRepository;
-import Restaurant.Restaurant.User.Model.User;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-import net.bytebuddy.asm.Advice;
-import org.omg.IOP.ExceptionDetailMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +20,10 @@ public class RestaurantServiceImpl implements RestaurantService{
         restaurant.setName(name);
         restaurant.setAddress(address);
         restaurantRepository.save(restaurant);
+    }
+    public Restaurant addRestaurant(Restaurant restaurant){
+        restaurantRepository.save(restaurant);
+        return restaurant;
     }
 
     @Override
@@ -69,4 +69,5 @@ public class RestaurantServiceImpl implements RestaurantService{
         }
 
     }
+
 }
