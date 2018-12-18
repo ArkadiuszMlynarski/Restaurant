@@ -55,6 +55,16 @@ public class DishController {
         }
     }
 
+    @GetMapping("/removeDish/{id}")
+    public ModelAndView removeDish(@PathVariable Long id,
+                                         Model model){
+
+        dishService.removeDish(id);
+        model.addAttribute("remove",true);
+
+        return new ModelAndView("redirect:/admin/dish/listDishes");
+    }
+
 
     private String getCurrentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
