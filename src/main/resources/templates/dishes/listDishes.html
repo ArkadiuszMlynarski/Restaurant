@@ -163,19 +163,20 @@ $(function () {
         <div class="col-xs-10 text-center" style="background-color:white; height:800px; display: table"><br>
             <div class="container">
                 <div class="row">
+                    <div th:if="${param.remove}" class="alert alert-success">
+                        <span>Danie zostało usunięte</span>
+                    </div>
+                    <div th:if="${param.update}" class="alert alert-success">
+                        <span>Danie zostało edytowane</span>
+                    </div>
+                    <div th:if="${param.add}" class="alert alert-success">
+                        <span>Danie zostało dodane</span>
+                    </div>
                     <h2>Lista dań</h2>
                 </div>
                 <div class="row">
 
-                    <div th:if="${param.remove}" class="alert alert-error align-center">
-                        <span>Danie zostało usunięte</span>
-                    </div>
-                    <div th:if="${param.update}" class="alert alert-error align-center">
-                        <span>Danie zostało edytowane</span>
-                    </div>
-                    <div th:if="${param.add}" class="alert alert-error align-center">
-                        <span>Danie zostało dodane</span>
-                    </div>
+
                     <div style="width: 300px; margin-left: auto; margin-right: auto">
                         <ul class="list-group">
                             <li class="list-group-item" th:each="dish : ${dishes}">
