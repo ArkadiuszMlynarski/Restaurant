@@ -25,6 +25,9 @@ public class RestaurantServiceImplTest {
     @MockBean
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private RestaurantService restaurantService;
+
 
 
     @Test
@@ -49,7 +52,7 @@ public class RestaurantServiceImplTest {
 
         when(restaurantRepository.findAll()).thenReturn(Stream
                 .of(restaurant1).collect(Collectors.toList()));
-        
+
         Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(new Long(1));
         if(optionalRestaurant.isPresent()) {
             assertEquals(restaurant1, optionalRestaurant.get());
@@ -59,6 +62,16 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void editRestaurant() {
+        Restaurant restaurant1  = new Restaurant("mcDonald","ul.Morska 99");
+        restaurant1.setId(new Long(1));
+
+        Restaurant restToUpdate = new Restaurant("Subway", "ul. ddd");
+
+        restaurant1.setName(restToUpdate.getName());
+        restaurant1.setAddress(restToUpdate.getAddress());
+        restaurantRepository.save(restaurant1);
+
+        assertEquals(restaurant1.getName(),restToUpdate.getName());
     }
 
     @Test
