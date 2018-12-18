@@ -22,4 +22,6 @@ public interface RestaurantService {
     public Optional<Restaurant> getById(Long id);
 
     public boolean isNameUsed(String name);
+
+    Restaurant addRestaurant(Restaurant restaurant);
 }

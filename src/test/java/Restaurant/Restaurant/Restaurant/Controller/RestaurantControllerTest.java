@@ -2,6 +2,7 @@ package Restaurant.Restaurant.Restaurant.Controller;
 
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.repository.RestaurantRepository;
+import Restaurant.Restaurant.Restaurant.service.RestaurantService;
 import Restaurant.Restaurant.Restaurant.service.RestaurantServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class RestaurantControllerTest {
 
     @Autowired
-    private RestaurantServiceImpl restaurantService;
+    private RestaurantService restaurantService;
 
     @MockBean
     private RestaurantRepository restaurantRepository;
@@ -33,6 +34,7 @@ public class RestaurantControllerTest {
                 .of(new Restaurant("mcDolan","ul.Morska 99"), new Restaurant("KFC","ul.Ziemana 88")).collect(Collectors.toList()));
         assertEquals(2, restaurantService.getAll().size());
     }
+
     @Test
     public void saveRestaurantTest(){
         Restaurant restaurant = new Restaurant("Chińczyk","ul.ooooa 99");
