@@ -8,15 +8,10 @@ import java.util.Optional;
 @Service
 public interface RestaurantService {
 
-    public void addRestaurant(Restaurant restaurant);
 
     public void addRestaurant(String name, String address);
 
     public List<Restaurant> getAll();
-
-    public Restaurant getByName(String name);
-
-    public void editRestaurant(Restaurant restaurant);
 
     public void editRestaurant(Long id, String name,String address);
 

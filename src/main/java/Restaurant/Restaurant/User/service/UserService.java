@@ -9,8 +9,6 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-    public void addUser(User user);
-
     public void addUser(String firstname, String lastname, String username, String password, String restaurant);
 
     public List<User> getAll();

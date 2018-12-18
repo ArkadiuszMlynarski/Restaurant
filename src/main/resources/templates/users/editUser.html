@@ -98,7 +98,7 @@
                         <label for="restauracja" class="col-sm-3 control-label">Restauracja</label>
                         <div class="col-sm-9">
                             <select id="restauracja" class="form-control" name="restaurant">
-                                <option th:each="restaurant : ${restaurants}" th:value="${restaurantModel}"><p th:text="${restaurant.name}"></p></option>
+                                <option th:each="restaurant : ${restaurants}" th:value="${restaurant.name}"><p th:text="${restaurant.name}"></p></option>
                             </select>
                         </div>
                     </div>

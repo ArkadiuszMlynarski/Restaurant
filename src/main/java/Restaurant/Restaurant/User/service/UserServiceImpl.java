@@ -25,10 +25,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     RoleRepository roleRepository;
 
-    @Override
-    public void addUser(User user){
-        userRepository.save(user);
-    }
+
 
     @Override
     public void addUser(String firstname, String lastname, String username, String password, String restaurant ){
@@ -73,23 +70,23 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void editUser(Long id, String firstname, String lastname, String username, String password, String restaurant) {
-        userRepository.deleteById(id);
+        User user = userRepository.getOne(id);
 
-        User user = new User();
+        //sprawdza czy nazwa isnieje, tylko jeśli jest inna niż edytowana
+        if(!user.getUsername().equals(username)){
+            if(isUsernameUsed(username)){
+                throw new IllegalStateException();
+            }
+        }
         user.setFirstName(firstname);
         user.setLastName(lastname);
         user.setUsername(username);
         user.setPassword(password);
 
-
-        Optional<Restaurant> tempOptRestaurant = restaurantRepository.findByName(restaurant);
-        if (tempOptRestaurant.isPresent()){
-            user.setRestaurant(tempOptRestaurant.get());
+        Optional<Restaurant> optionalRestaurant = restaurantRepository.findByName(restaurant);
+        if(optionalRestaurant.isPresent()) {
+            user.setRestaurant(optionalRestaurant.get());
         }
-
-        List<Role> tempList= new ArrayList<Role>();
-        tempList.add(roleRepository.findByName("USER"));
-        user.setRoles(tempList);
         userRepository.save(user);
     }
 

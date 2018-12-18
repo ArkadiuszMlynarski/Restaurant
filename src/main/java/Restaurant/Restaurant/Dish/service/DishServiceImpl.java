@@ -17,11 +17,6 @@ public class DishServiceImpl implements DishService{
     DishRepository dishRepository;
 
     @Override
-    public void addDish(Dish dish) {
-        dishRepository.save(dish);
-    }
-
-    @Override
     public void addDish(String nazwa, float cena) {
         Dish dish = new Dish();
         dish.setName(nazwa);
@@ -52,11 +47,6 @@ public class DishServiceImpl implements DishService{
         return dishRepository.findById(id);
     }
 
-    @Override
-    public void editDish(Dish dish) {
-        dishRepository.deleteById(dish.getId());
-        dishRepository.save(dish);
-    }
 
     @Override
     public void editDish(Long id, String name, float price) {
