@@ -15,12 +15,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 public class HomeControllerTest {
 
-    @Test
-    public void login() throws Exception {
-        HomeController controller = new HomeController();
-        MockMvc mockMvc = standaloneSetup(controller).build();
-        mockMvc.perform(get("/login")).andExpect(view().name("login"));
-    }
 
     @Test
     public void home() throws Exception {
