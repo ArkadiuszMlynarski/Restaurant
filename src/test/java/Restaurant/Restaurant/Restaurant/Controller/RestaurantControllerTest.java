@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(SpringRunner.class)
@@ -29,16 +29,24 @@ public class RestaurantControllerTest {
     private RestaurantRepository restaurantRepository;
 
     @Test
-    public void getRestaurantsTest(){
+    public void getRestaurantsTest() {
         when(restaurantRepository.findAll()).thenReturn(Stream
-                .of(new Restaurant("mcDolan","ul.Morska 99"), new Restaurant("KFC","ul.Ziemana 88")).collect(Collectors.toList()));
+                .of(new Restaurant("mcDolan", "ul.Morska 99"), new Restaurant("KFC", "ul.Ziemana 88")).collect(Collectors.toList()));
         assertEquals(2, restaurantService.getAll().size());
     }
 
     @Test
-    public void saveRestaurantTest(){
-        Restaurant restaurant = new Restaurant("Chińczyk","ul.ooooa 99");
+    public void saveRestaurantTest() {
+        Restaurant restaurant = new Restaurant("Chińczyk", "ul.ooooa 99");
         when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
         assertEquals(restaurant, restaurantService.addRestaurant(restaurant));
-}
+    }
+
+    @Test
+    public void removeRestaurantTest() {
+        Long id = new Long(1);
+        restaurantService.removeRestaurant(id);
+        verify(restaurantRepository, times(1)).deleteById(id);
+    }
+
 }
