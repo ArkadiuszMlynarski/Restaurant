@@ -4,6 +4,7 @@ package Restaurant.Restaurant.Dish.Controller;
 import Restaurant.Restaurant.Dish.Model.Dish;
 import Restaurant.Restaurant.Dish.service.DishService;
 import Restaurant.Restaurant.Dish.service.DishServiceImpl;
+import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -65,6 +66,41 @@ public class DishController {
         return new ModelAndView("redirect:/admin/dish/listDishes");
     }
 
+    @GetMapping("/editDish/{id}")
+    public String editDish(@PathVariable Long id, Model model){
+
+        model.addAttribute("currentUserName", getCurrentUserName());
+
+        Optional<Dish> optionalDish = dishService.getById(id);
+
+        if(optionalDish.isPresent()){
+            Dish dish = optionalDish.get();
+
+            model.addAttribute("name", dish.getName());
+            model.addAttribute("price",dish.getPrice());
+            model.addAttribute("ajdi",dish.getId());
+        }
+        return "/dishes/editDish";
+    }
+
+    @PostMapping("/confirmEditDish/{id}")
+    public ModelAndView confirmEditDish(@RequestParam("nazwa") String name,
+                                              @RequestParam("cena") float price,
+                                              @PathVariable Long id,
+                                              Model model){
+
+        try {
+            dishService.editDish(id, name, price);
+            model.addAttribute("update", true);
+            return new ModelAndView("redirect:/admin/dish/listDishes");
+        }
+        catch (IllegalStateException ex){
+            model.addAttribute("nameIsUsed", true);
+            return new ModelAndView("redirect:/admin/dish/editDish/{id}");
+        }
+
+    }
+
 
     private String getCurrentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -76,6 +112,8 @@ public class DishController {
             return "default";
         }
     }
+
+
 
 
 

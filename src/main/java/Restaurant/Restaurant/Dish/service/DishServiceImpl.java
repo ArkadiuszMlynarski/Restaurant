@@ -60,7 +60,17 @@ public class DishServiceImpl implements DishService{
 
     @Override
     public void editDish(Long id, String name, float price) {
+        Dish dish = dishRepository.getOne(id);
 
+        //sprawdza czy nazwa isnieje, tylko jeśli jest inna niż edytowana
+        if(!dish.getName().equals(name)){
+            if(isNameUsed(name)){
+                throw new IllegalStateException();
+            }
+        }
+        dish.setName(name);
+        dish.setPrice(price);
+        dishRepository.save(dish);
     }
 
     @Override
