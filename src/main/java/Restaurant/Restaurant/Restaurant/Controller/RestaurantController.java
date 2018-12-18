@@ -40,7 +40,7 @@ public class RestaurantController {
 
     @PostMapping("/confirmAddRestaurant")
     @ResponseBody
-    public ModelAndView addUser(@RequestParam("nazwa") String nazwa,
+    public ModelAndView addRestaurant(@RequestParam("nazwa") String nazwa,
                                 @RequestParam("adres") String adres,
                                 Model model){
 
@@ -67,7 +67,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/editRestaurant/{id}")
-    public String editUser(@PathVariable Long id, Model model){
+    public String editRestaurant(@PathVariable Long id, Model model){
 
         model.addAttribute("currentUserName", getCurrentUserName());
 
@@ -85,7 +85,7 @@ public class RestaurantController {
 
 
     @PostMapping("/confirmEditRestaurant/{id}")
-    public ModelAndView confirmEditUser(@RequestParam("nazwa") String name,
+    public ModelAndView confirmEditRestaurant(@RequestParam("nazwa") String name,
                                         @RequestParam("adres") String address,
                                         @PathVariable Long id,
                                         Model model){
