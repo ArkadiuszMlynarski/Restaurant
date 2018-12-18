@@ -11,6 +11,8 @@ public interface UserService {
 
     public void addUser(String firstname, String lastname, String username, String password, String restaurant);
 
+    public User addUser(User user);
+
     public List<User> getAll();
 
     public Optional<User> getByUsername(String username);

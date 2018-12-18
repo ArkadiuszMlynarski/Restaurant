@@ -14,7 +14,7 @@ public interface DishService {
 
     public List<Dish> getAll();
 
-    public void addDish(String nazwa, float cena);
+    public Dish addDish(String nazwa, float cena);
 
     public Dish getByName(String Dishname);
 
