@@ -72,7 +72,7 @@ public class AdminController {
         model.addAttribute("ajdi",user.getId());
         }
 
-        return "/users/editUser";
+        return "users/editUser";
     }
 
     @PostMapping("/confirmEditUser/{id}")
@@ -101,7 +101,7 @@ public class AdminController {
         model.addAttribute("currentUserName", getCurrentUserName());
         model.addAttribute("restaurants",restaurantService.getAll());
 
-        return "/users/newUser";
+        return "users/newUser";
     }
 
 

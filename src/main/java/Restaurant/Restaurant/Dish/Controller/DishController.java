@@ -35,7 +35,7 @@ public class DishController {
     @GetMapping("/newDish")
     public String newRestaurant(Model model){
         model.addAttribute("currentUserName", getCurrentUserName());
-        return "/dishes/newDish";
+        return "dishes/newDish";
     }
 
     @PostMapping("/confirmAddDish")
@@ -80,7 +80,7 @@ public class DishController {
             model.addAttribute("price",dish.getPrice());
             model.addAttribute("ajdi",dish.getId());
         }
-        return "/dishes/editDish";
+        return "dishes/editDish";
     }
 
     @PostMapping("/confirmEditDish/{id}")
