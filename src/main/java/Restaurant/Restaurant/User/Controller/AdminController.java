@@ -106,7 +106,6 @@ public class AdminController {
 
 
     @PostMapping("/confirmAddUser")
-    @ResponseBody
     public ModelAndView addUser(@RequestParam("imie") String imie,
                                 @RequestParam("nazwisko") String nazwisko,
                                 @RequestParam("username") String username,
