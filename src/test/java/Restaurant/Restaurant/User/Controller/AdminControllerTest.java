@@ -57,7 +57,7 @@ public class AdminControllerTest {
     @Test
     public void getUsersTest(){
         when(userRepository.findAll()).thenReturn(Stream
-                .of(new User("Jan","Kowalski","jan123","kowalski456",null), new User("Andrzej","Duda","andrzej123","duda456",null)).collect(Collectors.toList()));
+                .of(new User("Jan","Kowalski","jan123","kowalski456",null), new User("aaa","bbb","andrzej123","duda456",null)).collect(Collectors.toList()));
         assertEquals(2, userService.getAll().size());
     }
 

@@ -24,12 +24,19 @@ public class UserController {
     @GetMapping("/homepage")
     public String userHomePage(Model model){
 
+
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
             model.addAttribute("currentUserName", currentUserName);
+            Optional<User> user = userService.getByUsername(currentUserName);
+            if(user.isPresent()) {
+                model.addAttribute("currentUserRestaurant", user.get().getRestaurant().getName());
+            }
         }
 
         return "homepage";
     }
+
 }
