@@ -24,4 +24,6 @@ public interface RestaurantService {
     public boolean isNameUsed(String name);
 
     Restaurant addRestaurant(Restaurant restaurant);
+
+    Restaurant getByName(String restauracja);
 }
