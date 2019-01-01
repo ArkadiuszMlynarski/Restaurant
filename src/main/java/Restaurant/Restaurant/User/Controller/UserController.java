@@ -125,18 +125,6 @@ public class UserController {
         return "order/cart";
     }
 
-    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
-    public String remove(@PathVariable("id") String id, HttpSession session) {
-        
-        Dish dish = new Dish();
-        List<Product> cart = (List<Product>) session.getAttribute("cart");
-        int index = this.exists(id, cart);
-        cart.remove(index);
-        session.setAttribute("cart", cart);
-        return "order/cart";
-
-    }
-
     private float countTotalPrice(List<Product> products){
         float sum=0;
         for(Product xx: products){

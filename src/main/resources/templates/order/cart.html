@@ -21,7 +21,7 @@
         <!--<c:set var="total"-->
                <!--value="${total + item.product.price * item.quantity }"></c:set>-->
         <tr th:each="product : ${session.cart}">
-            <td align="center" ><a th:href="@{'/user/remove/' + ${product.dish.id}}">Usuń</a></td>
+            <td align="center"></td>
 
             <td th:text="${product.dish.name}">${item.product.name }</td>
             <td th:text="${product.dish.price} + ' zł'">${item.product.price }</td>
