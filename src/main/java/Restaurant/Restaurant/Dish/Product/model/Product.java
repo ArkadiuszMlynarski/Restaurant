@@ -21,4 +21,20 @@ public class Product {
     private Dish dish;
 
     private int quantity;
+
+    private float price;
+
+    public Product(Dish dish) {
+        this.dish = dish;
+        this.setQuantity(1);
+        this.calcPrice();
+    }
+
+    public void calcPrice(){
+        this.price = quantity * dish.getPrice();
+    }
+
+
+
+
 }

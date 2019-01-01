@@ -1,5 +1,6 @@
 package Restaurant.Restaurant.Order.Model;
 
+import Restaurant.Restaurant.Dish.Product.model.Product;
 import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.User.Model.User;
@@ -33,16 +34,16 @@ public class OrderModel {
     private User user;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-    private List<Dish> dishes;
+    private List<Product> products;
 
     private float price;
 
-    public void addDish(Dish dish){
-        this.dishes.add(dish);
+    public void addDish(Product product){
+        this.products.add(product);
     }
 
-    public void removeDish(Dish dish){
-        this.dishes.remove(dish);
+    public void removeDish(Product product){
+        this.products.remove(product);
     }
 
 

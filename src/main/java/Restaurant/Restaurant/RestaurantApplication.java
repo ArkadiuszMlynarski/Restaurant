@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan("Restaurant.Restaurant.Restaurant")
 @ComponentScan("Restaurant.Restaurant.Config")
 @ComponentScan("Restaurant.Restaurant.Order")
+@ComponentScan("Restaurant.Restaurant.Cart")
 @EnableWebMvc
 public class RestaurantApplication {
 

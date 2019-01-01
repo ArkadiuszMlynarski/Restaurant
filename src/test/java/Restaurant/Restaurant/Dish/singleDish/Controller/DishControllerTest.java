@@ -1,9 +1,9 @@
-package Restaurant.Restaurant.Dish.Controller;
+package Restaurant.Restaurant.Dish.singleDish.Controller;
 
 
-import Restaurant.Restaurant.Dish.Model.Dish;
-import Restaurant.Restaurant.Dish.repository.DishRepository;
-import Restaurant.Restaurant.Dish.service.DishService;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
+import Restaurant.Restaurant.Dish.singleDish.repository.DishRepository;
+import Restaurant.Restaurant.Dish.singleDish.service.DishService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package Restaurant.Restaurant.Dish.repository;
+package Restaurant.Restaurant.Dish.singleDish.repository;
 
-import Restaurant.Restaurant.Dish.Model.Dish;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
