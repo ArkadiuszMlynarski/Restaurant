@@ -1,18 +1,13 @@
 package Restaurant.Restaurant.Order.Model;
 
-import Restaurant.Restaurant.Dish.Model.Dish;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
-import Restaurant.Restaurant.User.Model.Role;
 import Restaurant.Restaurant.User.Model.User;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Getter
@@ -42,6 +37,13 @@ public class OrderModel {
 
     private float price;
 
+    public void addDish(Dish dish){
+        this.dishes.add(dish);
+    }
+
+    public void removeDish(Dish dish){
+        this.dishes.remove(dish);
+    }
 
 
 }
