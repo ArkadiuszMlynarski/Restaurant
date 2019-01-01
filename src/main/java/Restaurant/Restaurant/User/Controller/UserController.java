@@ -133,6 +133,7 @@ public class UserController {
         int index = this.exists(id, cart);
         cart.remove(index);
         session.setAttribute("cart", cart);
+        session.setAttribute("total",this.countTotalPrice((List<Product>) session.getAttribute("cart")));
         return "order/cart";
 
     }
