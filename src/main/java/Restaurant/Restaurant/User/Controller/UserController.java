@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -120,7 +122,7 @@ public class UserController {
             session.setAttribute("cart", cart);
         }
 
-        session.setAttribute("total",this.countTotalPrice((List<Product>) session.getAttribute("cart")));
+        session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
 
         return "order/cart";
     }
@@ -133,12 +135,36 @@ public class UserController {
         int index = this.exists(id, cart);
         cart.remove(index);
         session.setAttribute("cart", cart);
-        session.setAttribute("total",this.countTotalPrice((List<Product>) session.getAttribute("cart")));
+        session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
         return "order/cart";
 
     }
 
-    private float countTotalPrice(List<Product> products){
+    @GetMapping("confirmAddOrder")
+    public String confirmAddOrder(HttpSession session,Model model){
+        OrderModel order = new OrderModel();
+
+        Optional<User> user = userService.getByUsername(this.getUsername());
+
+        if(user.isPresent()){
+            order.setUser(user.get());
+            order.setRestaurant(user.get().getRestaurant());
+        }
+
+        order.setDate(LocalDateTime.now());
+        order.setProducts((List<Product>) session.getAttribute("cart"));
+        order.setPrice(this.calcTotalPrice(order.getProducts()));
+        order.setStatus("nowe");
+
+        orderService.addOrder(order);
+        session.removeAttribute("cart");
+        session.removeAttribute("total");
+
+        model.addAttribute("add",true);
+        return "homepage";
+    }
+
+    private float calcTotalPrice(List<Product> products){
         float sum=0;
         for(Product xx: products){
             sum += xx.getPrice();

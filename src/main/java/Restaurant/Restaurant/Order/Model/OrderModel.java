@@ -8,6 +8,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -27,7 +28,7 @@ public class OrderModel {
     @JoinColumn(name="Restaurant_id")
     private Restaurant restaurant;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name="User_id")
@@ -35,6 +36,8 @@ public class OrderModel {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     private List<Product> products;
+
+    private String status;
 
     private float price;
 
