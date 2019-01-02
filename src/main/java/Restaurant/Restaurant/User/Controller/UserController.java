@@ -157,6 +157,10 @@ public class UserController {
 
         Optional<User> user = userService.getByUsername(this.getUsername());
 
+        if(session.getAttribute("cart")==null){
+            return new ModelAndView("redirect:/user/newOrder");
+        }
+
         if(user.isPresent()){
             order.setUser(user.get());
             order.setRestaurant(user.get().getRestaurant());
