@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -25,7 +26,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderModel> getRestaurantOrders(Restaurant restaurant) {
 
-        //TODO
-        return null;
+        return repository.findOrderByRestaurant(restaurant.getId());
+
+    }
+
+    @Override
+    public Optional<OrderModel> getOrderById(Long id) {
+        return repository.findById(id);
+
+    }
+
+    @Override
+    public void finish(Long id) {
+        repository.finish(id);
     }
 }
