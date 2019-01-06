@@ -1,5 +1,6 @@
 package Restaurant.Restaurant.Dish.Product.model;
 
+import Restaurant.Restaurant.DailyReport.Model.DailyReport;
 import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Product {
     private int quantity;
 
     private float price;
+
 
     public Product(Dish dish) {
         this.dish = dish;
