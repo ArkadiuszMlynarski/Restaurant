@@ -177,13 +177,16 @@ public class UserController {
         order.setPrice(this.calcTotalPrice(order.getProducts()));
         order.setStatus("nowe");
 
+        this.addOrderToDailyReport(order);
         orderService.addOrder(order);
 
-        this.addOrderToDailyReport(order);
+
         session.removeAttribute("cart");
         session.removeAttribute("total");
-
         model.addAttribute("add",true);
+
+        System.out.println(dailyReportService.getDailyReportByDay(order.getDate()).getDish_price());
+
         return new ModelAndView("redirect:/user/homepage");
     }
 
