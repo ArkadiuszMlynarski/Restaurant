@@ -32,6 +32,8 @@ public class DailyReport {
 
     private HashMap<String, Float> dish_price;
 
+    private HashMap<String, Integer> dish_quantity;
+
     private float profits;
 
     @OneToMany(mappedBy = "dailyReport", cascade = CascadeType.ALL)
@@ -44,6 +46,7 @@ public class DailyReport {
     public void addOrder(OrderModel order) {
         orders.add(order);
         updateDishPrice(order);
+        updateDishQuantity(order);
         updateProfits();
     }
 
@@ -52,7 +55,6 @@ public class DailyReport {
         if (dish_price == null) {
             dish_price = new HashMap<>();
         }
-//        for (OrderModel order : orders) {
             for (Product prodakt : order.getProducts()) {
                 if (dish_price.containsKey(prodakt.getDish().getName())) {
                     float oldValue = dish_price.get(prodakt.getDish().getName());
@@ -63,8 +65,23 @@ public class DailyReport {
                     dish_price.put(prodakt.getDish().getName(), prodakt.getPrice());
                 }
             }
-          System.out.println("---------------------------");
-//        }
+    }
+
+    private void updateDishQuantity(OrderModel order) {
+
+        if (dish_quantity == null) {
+            dish_quantity = new HashMap<>();
+        }
+        for (Product prodakt : order.getProducts()) {
+            if (dish_quantity.containsKey(prodakt.getDish().getName())) {
+                Integer oldValue = dish_quantity.get(prodakt.getDish().getName());
+                oldValue += prodakt.getQuantity();
+                dish_quantity.put(prodakt.getDish().getName(), oldValue);
+            }
+            else {
+                dish_quantity.put(prodakt.getDish().getName(), prodakt.getQuantity());
+            }
+        }
     }
 
 

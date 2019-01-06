@@ -9,11 +9,20 @@
 
     <div th:if="${dailyReport}">
         <h1 th:text="${dailyReport.date}"></h1>
+        <span th:text="${dailyReport.profits}"></span> zł
+                                                            <br><br>
+        <span>Sztuki:</span>
+        <div th:each="map : ${dailyReport.dish_quantity}">
+            <span th:text="${map.key}">ww</span>
+            <span th:text="${map.value}">ddd</span>
+        </div>
+                                                             <br> <br>
+        <span>Zyski:</span>
+        <div th:each="map : ${dailyReport.dish_price}">
 
-        <!--<div th:each="map : ${dailyReport.dish_price}">-->
-            <!--<span th:text="${map.key}">ww</span>-->
-            <!--<span th:text="${map.value}">ddd</span>-->
-        <!--</div>-->
+            <span th:text="${map.key}">ww</span> :  
+            <span th:text="${map.value}">ddd</span> zł
+        </div>
 
     </div>
 

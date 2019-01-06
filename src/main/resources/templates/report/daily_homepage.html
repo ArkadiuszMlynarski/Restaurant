@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each="report : ${allDailyReports}">
-    <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date}"></a>
+    <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date} +'   ('+ ${report.profits} +' zł)'"></a>
 </div>
 
 
