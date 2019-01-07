@@ -180,7 +180,6 @@ public class UserController {
         this.addOrderToDailyReport(order);
         orderService.addOrder(order);
 
-
         session.removeAttribute("cart");
         session.removeAttribute("total");
         model.addAttribute("add",true);
@@ -198,9 +197,10 @@ public class UserController {
             currentDay.setUser(order.getUser());
         }
 
-        currentDay.addOrder(order);
-        dailyReportService.addDailyReport(currentDay);
+        //currentDay.addOrder(order);
         order.setDailyReport(currentDay);
+        dailyReportService.addDailyReport(currentDay);
+
 
     }
 
