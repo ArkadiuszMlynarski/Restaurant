@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface DailyReportRepository extends JpaRepository<DailyReport, Long> {
 
-    DailyReport findByDate(LocalDate localDate);
+   DailyReport findByDate(LocalDate localDate);
 
-//    List<DailyReport> findByDateBetween(LocalDateTime dayBegin, LocalDateTime dayEnd);
+   List<DailyReport> findByDateBetween(LocalDate dayBegin, LocalDate dayEnd);
 }
