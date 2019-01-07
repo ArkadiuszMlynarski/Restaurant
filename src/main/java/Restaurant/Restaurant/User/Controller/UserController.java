@@ -197,11 +197,9 @@ public class UserController {
             currentDay.setUser(order.getUser());
         }
 
-        //currentDay.addOrder(order);
+        currentDay.addOrder(order);
         order.setDailyReport(currentDay);
         dailyReportService.addDailyReport(currentDay);
-
-
     }
 
     @GetMapping("orderList/{restaurant}")
