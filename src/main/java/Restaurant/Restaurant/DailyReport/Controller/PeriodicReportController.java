@@ -44,17 +44,13 @@ public class PeriodicReportController {
         List<DailyReport> listDailyReportsBetweenDates = dailyReportService.getDailyReportBetween(localDateBegin,localDateEnd);
         currentPeriodicReport.setListDailyReports(listDailyReportsBetweenDates);
         currentPeriodicReport.update();
-        System.out.println("price: "+currentPeriodicReport.getDish_price());
-        System.out.println("quantity: "+currentPeriodicReport.getDish_quantity());
-
-        System.out.println("ile raportów: "+listDailyReportsBetweenDates.size());
 
         if(listDailyReportsBetweenDates.size()>0){
             model.addAttribute("listReports", listDailyReportsBetweenDates);
             model.addAttribute("sumReport", currentPeriodicReport);
         }
 
-        System.out.println("LocalDate od: = "+localDateBegin+",    do: "+localDateEnd);
+
         return "report/periodicReportHomepage";
     }
 
