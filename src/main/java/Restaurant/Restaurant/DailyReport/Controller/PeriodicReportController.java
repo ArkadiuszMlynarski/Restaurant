@@ -29,8 +29,8 @@ public class PeriodicReportController {
     DailyReportService dailyReportService;
 
     @GetMapping("/periodicReportPage")
-    public String getPeriodicReportHomepage(){
-
+    public String getPeriodicReportHomepage(Model model){
+        model.addAttribute("currentUserName", this.getUsername());
         return "report/periodicReportHomepage";
     }
 
@@ -52,6 +52,10 @@ public class PeriodicReportController {
             model.addAttribute("listReports", listDailyReportsBetweenDates);
             model.addAttribute("sumReport", currentPeriodicReport);
         }
+
+        model.addAttribute("currentUserName", this.getUsername());
+
+        System.out.println("profits : "+currentPeriodicReport.getProfits());
 
 
         return "report/periodicReportHomepage";
