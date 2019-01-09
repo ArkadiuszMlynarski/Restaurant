@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+	.form-signin {
+    max-width: 280px;
+    padding: 15px;
+    margin:200px;
+    margin-top:80px;
+    margin-left: 130px;
+  }
+
+.input-group-addon
+{
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+    color: rgb(255, 255, 255);
+}
+
+.form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+.fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('http://i.imgur.com/aFs5QmP.jpg');
+    background-repeat:repeat;
+  }
+
+  table {
+    width: 100%;
+    display:block;
+}
+thead {
+    display: inline-table;
+    width: 95%;
+    height: 30px;
+}
+tbody {
+    height: 150px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+</style>
 </head>
 <body>
+
 <div th:each="report : ${allDailyReports}">
     <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date} +'   ('+ ${report.profits} +' zł)'"></a>
 </div>
@@ -29,5 +78,59 @@
 </div>
 
 </div>
+
+<form class="form-signin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+
+                <div class="panel panel-default">
+
+                    <div class="panel panel-primary">
+
+
+                        <div class="text-center">
+                            <h3 style="color:#2C3E50" >Raport dzienny</h3>
+
+                            <h5><label for="Choose Report" style="color:#E74C3C"> Dzien :</label>
+
+                                <div class="customer" >
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input type="date" class="form-control" placeholder="Date" />
+                                    </div>
+                                </div>
+                                </br><button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-search"></span> Szukaj</button>
+                        </div>
+                        <div th:if="${dailyReport}" class="panel-body">
+
+                            <table class="table table-striped table-condensed">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" width="120px">Produkt</th>
+                                    <th class="text-center" width="120px">Sztuki</th>
+                                    <th class="text-center" width="120px">Wartosc</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center" width="200px">Test</td>
+                                    <td class="text-center" width="200px">5</td>
+                                    <td class="text-center" width="200px">500</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                <h4> <label style="color:#E74C3C" for="Total">Suma:</label><span th:text="${dailyReport.profits}"></span> zł</h4> </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+</form>
+
 </body>
 </html>
