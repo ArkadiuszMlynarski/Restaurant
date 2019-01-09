@@ -167,8 +167,8 @@ $(document).ready(function(){
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Dodaj zamówienie</a></li>
-                                <li><a href="">Wyświetl zamówienie</a></li>
+                                <li><a href="newOrder">Dodaj zamówienie</a></li>
+                                <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
                             </ul>
                         </li>
 

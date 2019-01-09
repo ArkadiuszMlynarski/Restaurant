@@ -121,8 +121,8 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Dodaj zamówienie</a></li>
-                                <li><a href="">Wyświetl zamówienie</a></li>
+                                <li><a href="newOrder">Dodaj zamówienie</a></li>
+                                <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
                             </ul>
                         </li>
 
@@ -167,7 +167,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="order : ${currentOrdersActive}">
-                                <td><span th:text="${order.date.hour} +':'+ ${order.date.minute}"></span>
+                                <td><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span>
                                     <a th:href="@{'/user/selectOrder/' + ${order.id}}"><span class="glyphicon glyphicon-search"></span></a></td>
                             </tr>
                             </tbody>
@@ -193,7 +193,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="order : ${currentOrdersFinished}">
-                                <td><span th:text="${order.date.hour} +':'+ ${order.date.minute}"></span></td>
+                                <td><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span></td>
                             </tr>
                             </tbody>
                         </table>

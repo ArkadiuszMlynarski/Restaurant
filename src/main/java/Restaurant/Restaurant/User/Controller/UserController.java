@@ -133,7 +133,22 @@ public class UserController {
         }
 
         session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
-        model.addAttribute("currentUserName", this.getUsername());
+
+
+
+        //getRestaurant
+        Restaurant actRestaurant = null;
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            model.addAttribute("currentUserName", currentUserName);
+            Optional<User> user = userService.getByUsername(currentUserName);
+            if(user.isPresent()) {
+                actRestaurant = user.get().getRestaurant();
+                model.addAttribute("currentUserRestaurant", actRestaurant.getName());
+            }
+        }
 
         List<Dish> listAllDishes = dishService.getAll();
 
@@ -180,6 +195,7 @@ public class UserController {
         this.addOrderToDailyReport(order);
         orderService.addOrder(order);
 
+
         session.removeAttribute("cart");
         session.removeAttribute("total");
         model.addAttribute("add",true);
@@ -207,10 +223,19 @@ public class UserController {
                             Model model){
 
         Restaurant actRestaurant = null;
-        Optional<Restaurant> OptActRestaurant = restaurantService.getByName(restaurant);
-        if(OptActRestaurant.isPresent()){
-            actRestaurant = OptActRestaurant.get();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            model.addAttribute("currentUserName", currentUserName);
+            Optional<User> user = userService.getByUsername(currentUserName);
+            if(user.isPresent()) {
+                actRestaurant = user.get().getRestaurant();
+                model.addAttribute("currentUserRestaurant", actRestaurant.getName());
+            }
         }
+
+   
 
 
         List<OrderModel> actRestaurantOrders = orderService.getRestaurantOrders(actRestaurant);
@@ -230,6 +255,19 @@ public class UserController {
 
         if(OptActOrder.isPresent()){
             actOrder = OptActOrder.get();
+        }
+
+        Restaurant actRestaurant = null;
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            model.addAttribute("currentUserName", currentUserName);
+            Optional<User> user = userService.getByUsername(currentUserName);
+            if(user.isPresent()) {
+                actRestaurant = user.get().getRestaurant();
+                model.addAttribute("currentUserRestaurant", actRestaurant.getName());
+            }
         }
 
         System.out.println(actOrder);
