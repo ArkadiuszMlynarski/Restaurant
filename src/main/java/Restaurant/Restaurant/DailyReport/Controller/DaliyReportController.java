@@ -3,6 +3,9 @@ package Restaurant.Restaurant.DailyReport.Controller;
 import Restaurant.Restaurant.DailyReport.Model.DailyReport;
 import Restaurant.Restaurant.DailyReport.Service.DailyReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,7 @@ public class DaliyReportController {
     public String daliyReportPage(Model model){
 
         model.addAttribute("allDailyReports", dailyReportService.getAll());
+        model.addAttribute("currentUserName", this.getUsername());
 
         return "report/daily_homepage";
     }
@@ -54,7 +58,7 @@ public class DaliyReportController {
         Optional<DailyReport> optDailyReport = Optional.ofNullable(dailyReportService.getDailyReportByDay(dateTime));
         DailyReport currentDailyReport = null;
 
-
+        model.addAttribute("currentUserName", this.getUsername());
 
         if(optDailyReport.isPresent()){
             currentDailyReport = optDailyReport.get();
@@ -67,6 +71,16 @@ public class DaliyReportController {
         model.addAttribute("allDailyReports", dailyReportService.getAll());
         return "report/daily_homepage";
 
+    }
+
+    public String getUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+
+        }
+        return null;
     }
 
 

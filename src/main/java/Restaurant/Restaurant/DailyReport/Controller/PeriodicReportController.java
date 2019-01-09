@@ -5,6 +5,9 @@ import Restaurant.Restaurant.DailyReport.Model.PeriodicReport;
 import Restaurant.Restaurant.DailyReport.Service.DailyReportService;
 import Restaurant.Restaurant.DailyReport.Service.PeriodicReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +55,16 @@ public class PeriodicReportController {
 
 
         return "report/periodicReportHomepage";
+    }
+
+    public String getUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+
+        }
+        return null;
     }
 
 
